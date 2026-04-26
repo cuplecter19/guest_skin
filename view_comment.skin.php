@@ -36,7 +36,7 @@ for ($i=0; $i<count($list); $i++) {
 		<p>
 			<em>&nbsp;</em>
 			<strong>
-				<?php if ($list[$i]['is_del'])  { echo "<span class=\"v7\"><a href=\"javascript:comment_delete('{$list[$i]['del_link']}');\">D</a></span>&nbsp;"; } ?>
+				<?php if ($list[$i]['is_del'])  { echo "<span class=\"v7\"><a href=\"javascript:comment_delete('{$list[$i]['del_link']}');\">delete</a></span>&nbsp;"; } ?>
 			</strong>
 		</p>
 	</li>
@@ -67,7 +67,7 @@ for ($i=0; $i<count($list); $i++) {
 		<?php if ($comment_min || $comment_max) { ?><script type="text/javascript"> check_byte('wr_content', 'char_count'); </script><?php } ?>
 
 		<div class="txt-right">
-			<button type="submit" id="btn_submit" class="ui-btn" accesskey='s'>ENTER</button>
+			<button type="submit" id="btn_submit" class="ui-btn" accesskey='s'>send</button>
 		</div>
 	</form>
 </div>

@@ -63,59 +63,82 @@ else
 			$lists[$ii]['content'] = search_font($stx, $lists[$ii]['content']);
 	?>
 				<li>
+					<!-- 파란 테이프 -->
+					<div class="receipt-tape"></div>
+
 					<form name="fboardlist" method="post" action="<?=$board_skin_url?>/password.php" style="margin:0">
 						<input type="hidden" name="bo_table" value="<?=$bo_table?>">
 						<input type="hidden" name="sfl"      value="<?=$sfl?>">
 						<input type="hidden" name="stx"      value="<?=$stx?>">
 						<input type="hidden" name="spt"      value="<?=$spt?>">
 						<input type="hidden" name="page"     value="<?=$page?>">
-						<input type="hidden" name="wr_idx"     value="<?=$lists[$ii]['wr_id']?>">
+						<input type="hidden" name="wr_idx"   value="<?=$lists[$ii]['wr_id']?>">
 						<input type="hidden" name="sw"       value="">
-						
-						<div  class="theme-box qna-content">
-							<p>
+
+						<div class="theme-box qna-content">
+
+							<!-- 공지 뱃지 -->
 							<? if($lists[$ii]['is_notice']) { ?>
-								<i>NOTICE</i>
+								<div class="receipt-notice">NOTICE</div>
 							<? } ?>
-								<em>
-									<?=$lists[$ii]['name']?>
-								</em>
-								<strong>
+
+							<!-- 헤더: Name / Date / 버튼 -->
+							<div class="receipt-header">
+								<span class="receipt-name-field">
+									<span class="receipt-label">Name</span>
+									<em><?=$lists[$ii]['name']?></em>
+								</span>
+								<span class="receipt-date-field">
+									<span class="receipt-label">Date</span>
+									<span class="date"><?=$lists[$ii]['datetime']?></span>
+								</span>
+								<strong class="receipt-actions">
 									<? if(($member['mb_id'] && ($member['mb_id'] == $lists[$ii]['mb_id'])) || $is_admin) { ?>
-										<a href="<?=$delete_href?>">D</a>
+										<? if($update_href) { ?><a href="<?=$update_href?>" class="modify-link">modify</a><? } ?>
+										<a href="<?=$delete_href?>" class="delete-link">delete</a>
 									<? } else if (!$lists[$ii]['mb_id']) { ?>
-										<a href="<?=$delete_href?>">D</a>
+										<? if($update_href) { ?><a href="<?=$update_href?>" class="modify-link">modify</a><? } ?>
+										<a href="<?=$delete_href?>" class="delete-link">delete</a>
 									<? } ?>
 									<? if($is_admin) { ?>
-										<a href="javascript:comment_wri('comment_write', '<?=$lists[$ii]['wr_id']?>');">R</a>
+										<a href="javascript:comment_wri('comment_write', '<?=$lists[$ii]['wr_id']?>');" class="reply-link">reply</a>
 									<? } ?>
 								</strong>
-								<span class="date">
-									<?=$lists[$ii]['datetime']?>
-								</span>
-							</p>
-							<div>
-								<?
-									if(strstr($lists[$ii]['wr_option'], 'secret') && !$is_admin && !$is_open) { 
-								?>
-								<fieldset class="ui-qna-list-password">
-									<input type="password" name="wr_password" id="wr_password_<?=$ii?>" value="" placeholder="PASSWORD"/>
-									<button type="submit" class="ui-submit ui-btn">ENTER</button>
-								</fieldset>
-								<? } else { ?>
-								<? if(strstr($lists[$ii]['wr_option'], 'secret')) { ?>
-									<span style="color: #efb04e;">[SECRET]</span><br />
-								<? } ?>
-									<?= $lists[$ii]['content'] ?>
-									<? echo $secret_msg; ?>
-								<? } ?>
 							</div>
+
+							<!-- 본문 -->
+							<div class="receipt-body">
+								<span class="receipt-body-label">Items</span>
+								<div class="receipt-content">
+									<? if(strstr($lists[$ii]['wr_option'], 'secret') && !$is_admin && !$is_open) { ?>
+										<fieldset class="ui-qna-list-password">
+											<input type="password" name="wr_password" id="wr_password_<?=$ii?>" value="" placeholder="PASSWORD"/>
+											<button type="submit" class="ui-submit ui-btn">enter</button>
+										</fieldset>
+									<? } else { ?>
+										<?= $lists[$ii]['content'] ?>
+										<? echo $secret_msg; ?>
+									<? } ?>
+								</div>
+							</div>
+
+							<!-- 하단 -->
+							<div class="receipt-footer">
+								<span>GOOD BILLS, BAD BILLS</span>
+								<span class="receipt-footer-number"><?=str_pad($lists[$ii]['wr_id'], 4, '0', STR_PAD_LEFT)?></span>
+							</div>
+
+							<!-- 탑 시크릿 도장 (비밀글) -->
+							<? if(strstr($lists[$ii]['wr_option'], 'secret')) { ?>
+								<img class="secret-stamp" src="<?=$board_skin_url?>/secret.webp" alt="TOP SECRET">
+							<? } ?>
+
 						</div>
 					</form>
-					<? 
-						if(strstr($lists[$ii]['wr_option'], 'secret') && !$is_admin && !$is_open) { 
+					<?
+						if(strstr($lists[$ii]['wr_option'], 'secret') && !$is_admin && !$is_open) {
 
-						} else { 
+						} else {
 							$wr_id = $lists[$ii]['wr_id'];
 							include ("$board_skin_path/view_comment.php");
 						}
