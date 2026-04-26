@@ -1,0 +1,219 @@
+@charset "utf-8";
+
+
+/** Notice Box **/
+.board-notice	{ width: 264px; padding: 10px; margin: 0 auto; text-align: center; box-sizing: border-box; }
+
+
+
+#page_board_content	{ padding: 0 10px; margin: 0 auto; }
+
+
+
+.qna-box		{ overflow: hidden; }
+
+/* === 옵션 / 글쓰기 박스 === */
+.ui-option					{ clear: both; padding-bottom: 10px; font-weight: 800; letter-spacing: 1px; color: #1B5A8A; }
+.ui-write-box				{ margin: 0 auto; width: 100%; overflow: hidden; }
+.ui-write-box textarea		{ width: 100%; height: 100px; padding: 10px; box-sizing: border-box; border: 1.5px solid #A3D8F1; border-radius: 8px; color: #1B3A4B; background: rgb(230,238,244); }
+.ui-write-box textarea:focus	{ outline: none; border-color: #F7818A; box-shadow: 0 0 0 2px rgba(247,129,138,0.18); }
+.ui-write-box textarea::placeholder	{ color: #A3D8F1; }
+.ui-control					{ padding: 10px 0 0; overflow: hidden; text-align: right; }
+.ui-control input[type="text"],
+.ui-control input[type="password"]	{ padding: 0 10px; height: 32px; border: 1.5px solid #A3D8F1; border-radius: 6px; color: #1B3A4B; background: rgba(255,255,255,0.6); }
+.ui-control input[type="text"]:focus,
+.ui-control input[type="password"]:focus, .search-box input[type="text"]:focus	{ outline: none; border-color: #F7818A; box-shadow: 0 0 0 2px rgba(247,129,138,0.18); }
+.ui-control input[type="text"]::placeholder,
+.ui-control input[type="password"]::placeholder	{ color: #A3D8F1; }
+
+.ui-write-area.top			{ margin-bottom: 20px; }
+
+/* === 공통 버튼 === */
+.ui-btn	{ display: inline-block; padding: 5px 18px; border: 1.5px solid #54A6E1; border-radius: 6px; color: #fff; font-size: 13px; cursor: pointer; transition: all 0.2s ease; letter-spacing: 0.5px; }
+.ui-btn:hover	{ background: #3A8FB7; border-color: #3A8FB7; }
+
+/* === QnA 리스트 === */
+.ui-qna-list					{ position: relative; clear: both; }
+.ui-qna-list > ul > li			{ position: relative; padding: 15px 0; }
+.ui-qna-list li p				{ clear: both; line-height: 1.5em; overflow: hidden; }
+.ui-qna-list li p i				{ position: relative; font-style: normal; padding: 2px 8px; margin-right: 8px; border-radius: 4px; background: #F7818A; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+.ui-qna-list li p em			{ font-style: normal; margin-right: 20px; font-weight: bold; color: #1B5A8A; }
+
+/* === D(삭제) / R(답변) 버튼 — 동그랗고 볼드하게 === */
+.ui-qna-list li p strong a		{ display: inline-flex; justify-content: center; align-items: center; width: 26px; height: 26px; margin: 2px; border-radius: 50%; font-size: 11px; font-weight: 800; font-family: 'Pretendard', sans-serif; text-decoration: none; transition: all 0.2s ease; line-height: 1; vertical-align: middle; translate: 0 -2px;}
+
+/* D(삭제) 버튼 — 핑크 포인트 */
+.ui-qna-list li p strong a:first-child	{ background: none; color: #F7818A; }
+.ui-qna-list li p strong a:first-child:hover	{ background: #F7818A; color: #fff; }
+
+/* R(답변) 버튼     블루 */
+.ui-qna-list li p strong a:last-child	{ background: none; color: #54A6E1; }
+.ui-qna-list li p strong a:last-child:hover	{ background: #54A6E1; color: #fff; }
+
+/* D만 있을 경우(비관리자) first-child = last-child이므로 핑크 유지 */
+.ui-qna-list li p strong a:only-child	{ background: none; color: #F7818A; }
+.ui-qna-list li p strong a:only-child:hover	{ background: #F7818A; color: #fff; }
+
+.ui-qna-list li p span.date		{ float: right; opacity: .8; color: #3A7CA5; font-size: 13px; }
+
+/* === 글 본문 말풍선 === */
+.ui-qna-list li .qna-content			{ line-height: 1.8em; font-size: 14px; margin-right: 80px; border-radius: 10px 10px 10px 0; padding: 12px 15px; border: 1.5px solid #A3D8F1; background: rgb(230,238,244); color: #1B3A4B; }
+
+/* === 댓글 말풍선 === */
+.ui-qna-list li .qna-comment-content	{ line-height: 1.8em; border-radius: 10px 10px 0 10px; margin-bottom: 15px; padding: 10px 14px; border: 1.5px solid rgba(163,216,241,0.4); background: rgba(242,249,253,1); color: #1B3A4B; font-size: 13px; }
+
+/* ============================================
+   글 본문 말풍선 — 왼쪽 하단 꼬리
+   ============================================ */
+.ui-qna-list li .qna-content	{
+	position: relative;
+	line-height: 1.8em;
+	font-size: 14px;
+	margin-right: 80px;
+	border-radius: 10px 10px 10px 0;
+	padding: 12px 15px;
+	border: 1.5px solid #A3D8F1;
+	background: rgb(230,238,244);
+	color: #1B3A4B;
+}
+/* 꼬리 테두리 (바깥쪽, 약간 더 큰 삼각형) */
+.ui-qna-list li .qna-content::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: -1.5px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 12px 0 0;
+	border-color: #A3D8F1 transparent transparent transparent;
+}
+/* 꼬리 채움 (안쪽, 테두리 두께만큼 작은 삼각형) */
+.ui-qna-list li .qna-content::after {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 8px 10px 0 0;
+	border-color: rgb(230,238,244) transparent transparent transparent;
+}
+
+/* ============================================
+   댓글 말풍선 — 오른쪽 하단 꼬리
+   ============================================ */
+.ui-qna-list li .qna-comment-content	{
+	position: relative;
+	line-height: 1.8em;
+	border-radius: 10px 10px 0 10px;
+	margin-bottom: 15px;
+	padding: 10px 14px;
+	border: 1.5px solid rgba(163,216,241,0.4);
+	background: rgba(242,249,253,1);
+	color: #1B3A4B;
+	font-size: 13px;
+}
+/* 꼬리 테두리 (바깥쪽) */
+.ui-qna-list li .qna-comment-content::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	right: -1.5px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 12px 0 0;
+	border-color: transparent transparent transparent transparent;
+	/* 오른쪽 하단: 왼쪽-위 방향으로 삼각형 */
+	border-width: 10px 0 0 12px;
+	border-color: rgba(163,216,241,0.4) transparent transparent transparent;
+}
+/* 꼬리 채움 (안쪽) */
+.ui-qna-list li .qna-comment-content::after {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	right: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 8px 0 0 10px;
+	border-color: rgba(242,249,253,1) transparent transparent transparent;
+}
+
+.ui-qna-list li ul				{ margin-left: 80px; padding-top: 15px; }
+
+.ui-qna-list li ul li					{ padding: 0; }
+.ui-qna-list li ul li p					{ padding-top: 10px; position: absolute; margin-left: -45px; margin-top: -50px; }
+.ui-qna-list li ul li strong			{ float: right; }
+
+/* === 댓글 내 D 버튼 — 동그란 핑크 === */
+.ui-qna-list li ul li strong .v7 a	{ display: inline-flex; justify-content: center; align-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 10px; font-weight: 800; font-family: 'Pretendard', sans-serif; color: #F7818A; transition: all 0.2s ease; }
+.ui-qna-list li ul li strong .v7 a:hover	{ background: #F7818A; color: #fff; }
+
+/* === 비밀글 패스워드 영역 === */
+.ui-qna-list .ui-qna-list-password label		{ padding-right: 10px; color: #1B5A8A; }
+.ui-qna-list .ui-qna-list-password label.blur	{ text-shadow: none; }
+.ui-qna-list .ui-qna-list-password input		{ position: relative; z-index: 1; padding: 0 10px; height: 28px; border: 1.5px solid #A3D8F1; border-radius: 6px; color: #1B3A4B; background: rgba(255,255,255,0.6); }
+.ui-qna-list .ui-qna-list-password input:focus	{ outline: none; border-color: #F7818A; box-shadow: 0 0 0 2px rgba(247,129,138,0.18); }
+.ui-qna-list .ui-qna-list-password button		{
+	height: 28px; line-height: 28px; padding: 0 25px;
+	font-family: 'Pretendard', sans-serif; margin-left: -5px; border-left-width: 0;
+}
+
+@media all and (max-width: 370px) {
+	.ui-qna-list .ui-qna-list-password		{ position: relative; padding-right: 90px; }
+	.ui-qna-list .ui-qna-list-password .ui-submit	{ position: absolute; top: 0; right: 0; width: 90px; margin-top: 10px; }
+	.ui-qna-list .ui-qna-list-password input		{ width: 100%; }
+}
+
+/* === 댓글 작성 영역 === */
+.ui-qna-list li div.ui-write-area					{ padding: 0; margin-left: 80px; background: transparent; margin-bottom: 10px; border: none; }
+.ui-qna-list li div.ui-write-area button			{ white-space:nowrap; height: 28px; line-height: 28px; padding: 0 25px; margin-top: 10px; }
+.ui-qna-list li div.ui-write-area textarea			{
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1.5px solid #A3D8F1;
+	border-radius: 8px;
+	word-break: break-all;
+	color: #1B3A4B;
+	background: rgb(230,238,244);
+}
+.ui-qna-list li div.ui-write-area textarea:focus	{ outline: none; border-color: #F7818A; box-shadow: 0 0 0 2px rgba(247,129,138,1); }
+.ui-qna-list .no-data			{ text-align: center; line-height: 100px; padding-bottom: 50px; color: #A3D8F1; }
+
+/* === SECRET 표시 컬러 === */
+.ui-qna-list span[style*="color:#ff6600"],
+.ui-qna-list span[style*="color: #ff6600"]	{ color: #F7818A !important; }
+.ui-qna-list span[style*="color:#efb04e"],
+.ui-qna-list span[style*="color: #efb04e"]	{ color: #F7818A !important; }
+
+/* === 검색 박스 === */
+.search-box			{ clear: both; float: right; margin-bottom: 10px; }
+.search-box input[type="text"]	{ padding: 0 10px; height: 30px; border: 1.5px solid #A3D8F1; border-radius: 6px; color: #1B3A4B; background: rgba(255,255,255,0.8);
+.search-box input[type="text"]:focus	{ outline: none; border-color: #F7818A; box-shadow: 0 0 0 2px rgba(247,129,138,0.3); }
+.search-box .ui-btn	{ vertical-align: middle; }
+
+/* === 페이지네이션 === */
+.ui-page	{ text-align: center; padding: 20px 0; }
+.ui-page a	{ display: inline-block; padding: 4px 10px; margin: 0 2px; border-radius: 5px; color: #3A8FB7; text-decoration: none; font-size: 13px; transition: all 0.2s ease; }
+.ui-page a:hover	{ background: rgba(84,166,225,0.12); color: #1B5A8A; }
+.ui-page b .color_gold2	{ display: inline-block; padding: 4px 10px; margin: 0 2px; border-radius: 5px; background: #54A6E1; color: #fff; font-weight: 700; }
+
+
+@media all and (max-width: 535px) {
+	.ui-control button	{ display: block; clear: both; width: 100%; margin-top: 10px; }
+}
+@media all and (max-width: 435px) {
+	.ui-control input[type="text"],
+	.ui-control input[type="password"]	{ display: block; clear: both; width: 100%; margin-top: 10px; }
+	.ui-qna-list	{ padding: 10px 0; }
+}
+
+@media all and (max-width: 380px) {
+	.ui-qna-list .ui-qna-list-password label	{ display: none; }
+}
