@@ -60,7 +60,7 @@ echo $option_hidden;
 		<input type="text" maxlength="20" name="wr_name" id="wr_name" placeholder="NAME" itemname="이름" required value="<?=$name?>" />
 		<input type="password" maxlength="20" id="wr_password" name="wr_password" placeholder="PASSWORD" itemname="패스워드" value="<?=$password?>" <?=$password_required?> />
 	<?php } ?>
-		<button type="submit" id="btn_submit" class="ui-btn" accesskey='s'>ENTER</button>
+		<button type="submit" id="btn_submit" class="ui-btn" accesskey='s'>send</button>
 	</div>
 </form>
 
