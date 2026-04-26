@@ -1,8 +1,24 @@
 @charset "utf-8";
 
 /* === Font Imports === */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Caveat:wght@400;700&display=swap');
-
+@font-face {
+    font-family: 'Sonpyeonji';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+  font-family: 'BetterChill';
+  src: url('https://milkyway1206.ivyro.net/data/font/BetterChill.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal; 
+}
+@font-face {
+    font-family: 'AliceDigitalLearning';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
 
 /** Notice Box **/
 .board-notice	{ width: 264px; padding: 10px; margin: 0 auto; text-align: center; box-sizing: border-box; font-family: 'Courier New', monospace; }
@@ -14,7 +30,7 @@
 
 /* === 검색 박스 === */
 .search-box				{ clear: both; float: right; margin-bottom: 12px; }
-.search-box input[type="text"]	{ padding: 0 10px; height: 30px; border: 1.5px solid #888; border-radius: 0; color: #222; background: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; font-size: 13px; }
+.search-box input[type="text"]	{ padding: 0 10px; height: 30px; border: 1.5px solid #888; border-radius: 0; color: #222; background: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; font-size: 13px; vertical-align: middle; }
 .search-box input[type="text"]:focus	{ outline: none; border-color: #444; }
 .search-box .ui-btn		{ vertical-align: middle; }
 
@@ -26,10 +42,8 @@
 	background: transparent;
 	border: none;
 	border-bottom: 2px solid #444;
-	font-family: 'Caveat', 'Nanum Pen Script', cursive;
-	font-size: 18px;
-	font-weight: 700;
-	color: #333;
+        font-family: 'AliceDigitalLearning';
+	font-size: 12px;
 	cursor: pointer;
 	letter-spacing: 0.5px;
 	transition: color 0.2s, border-color 0.2s;
@@ -49,10 +63,10 @@
 	box-sizing: border-box;
 	border: 1px solid #888;
 	border-radius: 0;
-	color: #222;
+	color: #555;
 	background: #fafaf7;
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 17px;
+	font-family: 'Sonpyeonji', cursive;
+	font-size: 20px;
 	line-height: 1.8;
 	resize: vertical;
 }
@@ -61,7 +75,7 @@
 
 .ui-control	{ padding: 10px 0 0; overflow: hidden; text-align: right; }
 .ui-control input[type="text"],
-.ui-control input[type="password"]	{ padding: 0 10px; height: 32px; border: 1px solid #888; border-radius: 0; color: #222; background: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; font-size: 13px; }
+.ui-control input[type="password"]	{ padding: 0 10px; height: 32px; border: 1px solid #888; border-radius: 0; color: #222; background: rgba(255,255,255,0.9); font-family: 'Courier New', monospace; font-size: 13px; vertical-align: middle; }
 .ui-control input[type="text"]:focus,
 .ui-control input[type="password"]:focus	{ outline: none; border-color: #444; }
 .ui-control input[type="text"]::placeholder,
@@ -88,13 +102,12 @@
 	padding: 14px 18px 38px 68px;
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 13px;
-	color: #1a1a1a;
+	color: #333;
 	box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
 	overflow: hidden;
 	margin-right: 0;
 }
 
-/* 왼쪽 척추 — 천공 + RECEIPT 세로 텍스트 */
 .ui-qna-list li .qna-content::before {
 	content: 'RECEIPT';
 	display: flex;
@@ -102,36 +115,31 @@
 	align-items: center;
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 8px;
 	width: 52px;
 	height: 100%;
-	border-left: 2px dashed #aaa;   /* border-left visually appears on the right after rotate(180deg) */
-	background-image: radial-gradient(circle at 26px, #d5d1c8 9px, transparent 10px);
-	background-size: 52px 34px;
-	background-position: 0 8px;
+	border-left: 1px dashed #aaa;
 	writing-mode: vertical-lr;
 	transform: rotate(180deg);
-	font-family: 'Courier New', Courier, monospace;
-	font-weight: 900;
-	font-size: 14px;
-	letter-spacing: 5px;
+	font-family: 'Libre Baskerville';
+	font-weight: 700;
+	font-size: 36px;
+	letter-spacing: 3px;
 	color: #777;
 	box-sizing: border-box;
 }
 
-/* 이전 말풍선 꼬리 제거 */
-.ui-qna-list li .qna-content::after { display: none; }
 
-
-/* === 파란 테이프 (receipt-tape) — <li> 기준 절대 위치 === */
+/* === 파란 마스킹 테이프 (receipt-tape) — <li> 기준 절대 위치 === */
+/* 변경: 외부 URL 사용 */
 .receipt-tape {
 	position: absolute;
 	top: 0;
-	left: 35px;
-	width: 120px;
-	height: 55px;
-	background: url('./tape.webp') no-repeat center / cover;
-	transform: rotate(-5deg);
+	left: -20px;
+	width: 130px;
+	height: 58px;
+	background: url('https://milkyway1206.ivyro.net/img/tape.webp') no-repeat center / cover;
+	transform: rotate(-15deg);
 	z-index: 10;
 	pointer-events: none;
 }
@@ -143,52 +151,63 @@
 	padding: 2px 10px;
 	background: #333;
 	color: #f9f8f4;
-	font-family: 'Courier New', monospace;
+	font-family: 'BetterChill';
 	font-size: 10px;
-	font-weight: 700;
 	letter-spacing: 2px;
 	margin-bottom: 8px;
 }
 
 
-/* === 영수증 헤더: Name / Date / 버튼 === */
+/* ============================================
+   영수증 헤더: Name / Date (1행) + 버튼 (2행)
+   ============================================ */
 .receipt-header {
 	display: flex;
-	align-items: flex-end;
-	flex-wrap: wrap;
-	gap: 4px 16px;
+	flex-direction: column;
+	gap: 4px;
+        margin-top: 5px;
 	padding-bottom: 8px;
-	border-bottom: 1px solid #bbb;
-	margin-bottom: 10px;
+}
+
+/* --- 1행: Name + Date --- */
+.receipt-header-fields {
+	display: flex;
+	align-items: flex-end;
+	gap: 16px;
+	width: 100%;
 }
 
 .receipt-name-field,
-.receipt-date-field		{ display: inline-flex; align-items: baseline; gap: 5px; }
+.receipt-date-field		{ display: flex; align-items: baseline; gap: 5px; flex: 1; min-width: 0; }
 
-.receipt-label			{ font-family: 'Courier New', Courier, monospace; font-weight: 700; font-size: 11px; color: #666; letter-spacing: 0.5px; }
+.receipt-label			{ font-family: 'Courier New', Courier, monospace; font-weight: 700; font-size: 11px; color: #666; letter-spacing: 0.5px; white-space: nowrap; }
 
-.receipt-name-field em {
+
+.receipt-name-field em, .receipt-date-field .date {
+	position: relative;
+        top: 3px;
+	flex: 1;
+	display: block;
+	min-width: 0;
 	font-style: normal;
-	font-family: 'Nanum Pen Script', 'Caveat', cursive;
-	font-size: 18px;
-	color: #1a1a1a;
-	border-bottom: 1px solid #888;
-	min-width: 80px;
-	padding: 0 4px 1px;
+	font-family: 'Sonpyeonji', 'Caveat';
+	font-size: 22px;
+        background-image: linear-gradient(#888, #888);
+        background-repeat: no-repeat;
+        background-size: 100% 1px;
+        background-position: 0 80%;
+	padding: 0 0 1px 10px;
 }
 
-.receipt-date-field .date {
-	font-family: 'Nanum Pen Script', 'Caveat', cursive;
-	font-size: 16px;
-	color: #1a1a1a;
-	border-bottom: 1px solid #888;
-	min-width: 110px;
-	padding: 0 4px 1px;
+/* --- 2행: 액션 버튼 (우측 정렬) --- */
+.receipt-actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 6px;
+	width: 100%;
 }
-
-/* 액션 버튼 영역 */
-.receipt-actions			{ margin-left: auto; display: inline-flex; align-items: center; gap: 6px; }
-.receipt-actions a			{ font-family: 'Caveat', 'Nanum Pen Script', cursive; font-size: 15px; font-weight: 700; text-decoration: none; color: #c44; transition: color 0.2s; border-bottom: 1px solid currentColor; padding: 0 2px; }
+.receipt-actions a			{ font-family: 'BetterChill', 'Sonpyeonji'; font-size: 20px; text-decoration: none; color: #c44; transition: color 0.2s; border-bottom: 1px solid; }
 .receipt-actions a:hover	{ color: #922; }
 .receipt-actions .reply-link		{ color: #3A7CA5; }
 .receipt-actions .reply-link:hover	{ color: #1B5A8A; }
@@ -208,13 +227,13 @@
 		#c0bdb5 27px,
 		#c0bdb5 28px
 	);
-	background-position: 0 26px;
+	background-position: 0 22px;
 	min-height: 56px;
-	padding: 2px 5px;
+	padding: 0 5px 2px 5px;
 	line-height: 28px;
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
-	color: #1a1a1a;
+	font-family: 'Sonpyeonji';
+	font-size: 22px;
+	color: #444;
 	word-break: break-all;
 }
 
@@ -222,7 +241,7 @@
 /* === 비밀글 패스워드 영역 === */
 .ui-qna-list-password				{ display: flex; align-items: center; gap: 8px; padding: 6px 0; flex-wrap: wrap; }
 .ui-qna-list-password label			{ color: #555; font-family: 'Courier New', monospace; font-size: 12px; }
-.ui-qna-list-password input			{ padding: 0 8px; height: 28px; border: 1px solid #888; border-radius: 0; font-family: 'Courier New', monospace; font-size: 13px; background: rgba(255,255,255,0.85); color: #222; }
+.ui-qna-list-password input			{ padding: 0 8px; height: 28px; border: 1px solid #888; border-radius: 0; font-family: 'Courier New', monospace; font-size: 13px; background: rgba(255,255,255,0.85); }
 .ui-qna-list-password input:focus	{ outline: none; border-color: #444; }
 
 
@@ -246,11 +265,18 @@
 }
 .receipt-footer-number	{ font-weight: 700; color: #666; }
 
+.ink-stain {
+    position: absolute;
+    bottom: 0;
+    opacity: .8;
+    pointer-events: none;
+    z-index: 3;
+}
 
 /* === 탑 시크릿 도장 === */
 .secret-stamp {
 	position: absolute;
-	bottom: 32px;
+	bottom: 12px;
 	right: 18px;
 	width: 88px;
 	height: auto;
@@ -280,13 +306,13 @@
 	background: #f0ede6;
 	color: #1a1a1a;
 	font-size: 15px;
-	font-family: 'Nanum Pen Script', cursive;
+	font-family: 'Sonpyeonji';
 }
 .ui-qna-list li .qna-comment-content::before,
 .ui-qna-list li .qna-comment-content::after { display: none; }
 
 /* 댓글 내 delete 버튼 */
-.ui-qna-list li ul li strong .v7 a		{ font-family: 'Caveat', 'Nanum Pen Script', cursive; font-size: 14px; font-weight: 700; color: #c44; text-decoration: none; border-bottom: 1px solid currentColor; transition: color 0.2s; }
+.ui-qna-list li ul li strong .v7 a		{ font-family: 'Caveat', 'Sonpyeonji'; font-size: 14px; font-weight: 700; color: #c44; text-decoration: none; border-bottom: none; }
 .ui-qna-list li ul li strong .v7 a:hover	{ color: #922; }
 
 /* 댓글 작성 영역 */
@@ -302,7 +328,7 @@
 	word-break: break-all;
 	color: #222;
 	background: #fafaf7;
-	font-family: 'Nanum Pen Script', cursive;
+	font-family: 'Sonpyeonji', cursive;
 	font-size: 17px;
 	line-height: 1.8;
 }
