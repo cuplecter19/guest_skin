@@ -3,6 +3,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 if($is_admin) set_session("ss_delete_token", $token = uniqid(time()));
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville">', 1);
 
 if($is_member)  {
 	$comment_token = uniqid(time());
@@ -55,7 +56,7 @@ else
 		for ($ii=0; $ii < count($lists); $ii++) {
 			$profile = get_member($lists[$ii]['mb_id']);
 			include "$board_skin_path/inc.list_main.php"; 
-			$lists[$ii]['datetime']=substr($lists[$ii]['wr_datetime'],0,4)."/".substr($lists[$ii]['wr_datetime'],5,2)."/".substr($lists[$ii]['wr_datetime'],8,2)." ".substr($lists[$ii]['wr_datetime'],11,8);
+			$lists[$ii]['datetime']=substr($lists[$ii]['wr_datetime'],0,4).".".substr($lists[$ii]['wr_datetime'],5,2).".".substr($lists[$ii]['wr_datetime'],8,2)." ".substr($lists[$ii]['wr_datetime'],11,5);
 
 			$is_open = check_password(get_cookie('read_'.$lists[$ii]['wr_id']), $lists[$ii]['wr_password']);
 
@@ -82,16 +83,22 @@ else
 								<div class="receipt-notice">NOTICE</div>
 							<? } ?>
 
-							<!-- 헤더: Name / Date / 버튼 -->
+							<!-- 헤더 -->
 							<div class="receipt-header">
-								<span class="receipt-name-field">
-									<span class="receipt-label">Name</span>
-									<em><?=$lists[$ii]['name']?></em>
-								</span>
-								<span class="receipt-date-field">
-									<span class="receipt-label">Date</span>
-									<span class="date"><?=$lists[$ii]['datetime']?></span>
-								</span>
+
+								<!-- 1행: Name / Date -->
+								<div class="receipt-header-fields">
+									<span class="receipt-name-field">
+										<span class="receipt-label">Name</span>
+										<em><?=$lists[$ii]['name']?></em>
+									</span>
+									<span class="receipt-date-field">
+										<span class="receipt-label">Date</span>
+										<span class="date"><?=$lists[$ii]['datetime']?></span>
+									</span>
+								</div>
+
+								<!-- 2행: 버튼 -->
 								<strong class="receipt-actions">
 									<? if(($member['mb_id'] && ($member['mb_id'] == $lists[$ii]['mb_id'])) || $is_admin) { ?>
 										<? if($update_href) { ?><a href="<?=$update_href?>" class="modify-link">modify</a><? } ?>
@@ -104,6 +111,7 @@ else
 										<a href="javascript:comment_wri('comment_write', '<?=$lists[$ii]['wr_id']?>');" class="reply-link">reply</a>
 									<? } ?>
 								</strong>
+
 							</div>
 
 							<!-- 본문 -->
@@ -126,11 +134,12 @@ else
 							<div class="receipt-footer">
 								<span>GOOD BILLS, BAD BILLS</span>
 								<span class="receipt-footer-number"><?=str_pad($lists[$ii]['wr_id'], 4, '0', STR_PAD_LEFT)?></span>
+                                                                <img class="ink-stain" src="https://milkyway1206.ivyro.net/img/ink.webp">
 							</div>
 
 							<!-- 탑 시크릿 도장 (비밀글) -->
 							<? if(strstr($lists[$ii]['wr_option'], 'secret')) { ?>
-								<img class="secret-stamp" src="<?=$board_skin_url?>/secret.webp" alt="TOP SECRET">
+								<img class="secret-stamp" src="https://milkyway1206.ivyro.net/img/secret.webp" alt="TOP SECRET">
 							<? } ?>
 
 						</div>
@@ -157,8 +166,6 @@ else
 		<div class="ui-page">
 			<? if ($prev_part_href) { echo "<a href='$prev_part_href'><img src='$board_skin_path/img/btn_search_prev.gif' border=0 align=absmiddle title='이전검색'></a>"; } ?>
 			<?
-			// 기본으로 넘어오는 페이지를 아래와 같이 변환하여 이미지로도 출력할 수 있습니다.
-			//echo $write_pages;
 			$write_pages = str_replace("처음", "<<", $write_pages);
 			$write_pages = str_replace("이전", "Prev", $write_pages);
 			$write_pages = str_replace("다음", "Next", $write_pages);
@@ -174,36 +181,11 @@ else
 </div>
 
 <script language="JavaScript">
-//if ("<?=$sca?>") document.fcategory.sca.value = "<?=$sca?>";
 if ("<?=$stx?>") {
 	document.fsearch.sfl.value = "<?=$sfl?>";
 	document.fsearch.sop.value = "<?=$sop?>";
 }
 </script>
-
-<!-- <script language="JavaScript">
-// HTML 로 넘어온 <img ... > 태그의 폭이 테이블폭보다 크다면 테이블폭을 적용한다.
-function resize_image()
-{
-	var target = document.getElementsByName('target_resize_image[]');
-	var image_width = parseInt('<?=$board['bo_image_width']?>');
-	var image_height = 0;
-
-	for(i=0; i<target.length; i++) { 
-		// 원래 사이즈를 저장해 놓는다
-		target[i].tmp_width  = target[i].width;
-		target[i].tmp_height = target[i].height;
-		// 이미지 폭이 테이블 폭보다 크다면 테이블폭에 맞춘다
-		if(target[i].width > image_width) {
-			image_height = parseFloat(target[i].width / target[i].height)
-			target[i].width = image_width;
-			target[i].height = parseInt(image_width / image_height);
-		}
-	}
-}
-
-window.onload = resize_image;
-</script> -->
 
 <? if ($is_checkbox) { ?>
 <script language="JavaScript">
